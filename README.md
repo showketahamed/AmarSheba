@@ -1,229 +1,169 @@
 # AmarSheba
 
-AmarSheba is a full-stack Bangladesh citizen services platform built with:
+AmarSheba is a Bangladesh citizen services platform focused on making public-service information, emergency contacts, authentication, and service workflows easier to access in one place.
 
-- React + Vite + Tailwind CSS frontend
-- Node.js + Express backend
-- MySQL database
+This repository should be described on GitHub as a project built around:
 
-This guide explains how to run the project from A to Z on **Windows with XAMPP**.
+- Next.js migration target
+- Supabase
+- PostgreSQL
+- bilingual citizen-service experience for Bangladesh
 
-## Project Location
+The old XAMPP + MySQL + separate Node/Express description is outdated and does not reflect the direction of the current project.
 
-Put the project in this exact folder:
+## Project Overview
 
-```text
-C:\xampp\htdocs\AmarSheba
-```
+AmarSheba brings together common public service information and digital support features in a single platform. The project includes service discovery, emergency support data, bilingual content, user authentication, protected dashboards, admin tools, contact flows, and an assistant interface.
 
-Your structure should look like this:
+The repository is currently in a transition state: legacy Vite/Express application code is still present, while the database and migration direction have already been updated toward Next.js and Supabase PostgreSQL.
 
-```text
-AmarSheba/
-  frontend/
-  backend/
-  database/
-  README.md
-```
+## What The Project Includes
 
-## Requirements
+### User-facing features
 
-Make sure these are installed:
-
-- XAMPP
-- Node.js
-- npm
-
-## Step 1: Move Project Into XAMPP htdocs
-
-Copy or move the AmarSheba project folder here:
-
-```text
-C:\xampp\htdocs\AmarSheba
-```
-
-## Step 2: Start XAMPP MySQL
-
-1. Open **XAMPP Control Panel**
-2. Start **MySQL**
-
-You do not need Apache for the React frontend, but MySQL must be running.
-
-## Step 3: Open phpMyAdmin
-
-Open this URL in your browser:
-
-[http://localhost/phpmyadmin](http://localhost/phpmyadmin)
-
-## Step 4: Create or Import Database
-
-### Option A: Import the ready SQL file
-
-1. In phpMyAdmin, click **New**
-2. Create a database named:
-
-```text
-amarsheba
-```
-
-3. Open the new database
-4. Click **Import**
-5. Select this file:
-
-```text
-C:\xampp\htdocs\AmarSheba\database\amarsheba.sql
-```
-
-6. Click **Go**
-
-This will create the required tables and seed initial data.
-
-## Step 5: Backend Environment Setup
-
-Go to:
-
-```text
-C:\xampp\htdocs\AmarSheba\backend
-```
-
-Create a `.env` file if it does not already exist.
-
-Use this config:
-
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=amarsheba
-PORT=5000
-JWT_SECRET=amarsheba_secret_key
-JWT_EXPIRES_IN=7d
-OTP_EXPIRES_MINUTES=10
-```
-
-Optional SMTP config for OTP email:
-
-```env
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_USER=your_email@example.com
-SMTP_PASS=your_email_password
-SMTP_FROM=AmarSheba <no-reply@example.com>
-```
-
-If SMTP is not configured, OTP codes will be logged on the backend server console.
-
-## Step 6: Run Backend
-
-Open Command Prompt or PowerShell:
-
-```bash
-cd C:\xampp\htdocs\AmarSheba\backend
-npm install
-npm run dev
-```
-
-Backend will run at:
-
-[http://localhost:5000](http://localhost:5000)
-
-Health check:
-
-[http://localhost:5000/api/health](http://localhost:5000/api/health)
-
-## Step 7: Run Frontend
-
-Open a new Command Prompt or PowerShell window:
-
-```bash
-cd C:\xampp\htdocs\AmarSheba\frontend
-npm install
-npm run dev
-```
-
-Frontend will run at:
-
-[http://localhost:5173](http://localhost:5173)
-
-## Step 8: Application URLs
-
-- Frontend: [http://localhost:5173](http://localhost:5173)
-- Backend: [http://localhost:5000](http://localhost:5000)
-
-## Step 9: Admin Login
-
-Use this admin account:
-
-```text
-Email: admin@amarsheba.com
-Password: admin123
-```
-
-## Backend Commands
-
-```bash
-cd C:\xampp\htdocs\AmarSheba\backend
-npm install
-npm run dev
-```
-
-## Frontend Commands
-
-```bash
-cd C:\xampp\htdocs\AmarSheba\frontend
-npm install
-npm run dev
-```
-
-## Main Features
-
-- Bilingual interface (Bangla + English)
-- Authentication with backend API
-- OTP email verification
-- Services API
-- Contact API
+- Home page for introducing the platform
+- Services listing page
+- Individual service details pages
+- Emergency services page
+- Assistant page
+- About page
+- Contact page
+- FAQ page
+- Login and registration pages
+- User dashboard
+- User profile page
 - Admin dashboard
-- Emergency services directory
-- AI assistant page
 
-## Important Notes
+### Core capabilities
 
-- MySQL must be running before starting the backend
-- Database name must be `amarsheba`
-- Backend uses port `5000`
-- Frontend uses port `5173`
-- If port `5173` is busy, Vite may choose another port automatically
-- OTP email sending requires SMTP settings in `backend/.env`
+- Bilingual interface with Bangla and English content
+- Theme support with dark mode handling
+- Authentication with protected routes
+- Admin-only route protection
+- OTP-based verification flow
+- Citizen service catalog with categories and details
+- Emergency contact directory with structured data
+- Contact form and inquiry management
+- Assistant/chat-style user support interface
+- Scroll, page transition, and usability components
 
-## Troubleshooting
+## Current Frontend Structure
 
-### MySQL connection error
+The existing frontend implementation includes:
 
-Make sure:
+- React 19
+- Vite
+- React Router
+- Tailwind CSS
+- `lucide-react`
 
-- XAMPP MySQL is started
-- database name is `amarsheba`
-- `backend/.env` matches your local MySQL config
+Main routes currently implemented in the app:
 
-### Frontend not opening
+- `/`
+- `/services`
+- `/services/emergency`
+- `/services/:serviceId`
+- `/assistant`
+- `/dashboard`
+- `/admin`
+- `/profile`
+- `/login`
+- `/register`
+- `/about`
+- `/contact`
+- `/faq`
 
-Make sure:
+Important shared frontend pieces include:
 
-- frontend dependencies are installed
-- Vite dev server is running
+- `Navbar`
+- `Footer`
+- `LanguageToggle`
+- `ThemeToggle`
+- `ProtectedRoute`
+- `AssistantChat`
+- `FloatingChatbot`
+- `EmergencyManagement`
+- `BackToTop`
+- `ScrollToTop`
+- `PageTransition`
 
-### Backend not opening
+## Current Backend And API
 
-Make sure:
+The current backend codebase includes:
 
-- backend dependencies are installed
-- MySQL is running
-- `.env` exists inside `backend`
+- Express-based API structure
+- JWT authentication flow
+- bcrypt password hashing
+- Nodemailer-based email support
+- PostgreSQL connection through Supabase-compatible `DATABASE_URL`
 
-### OTP email not received
+Current API areas include:
 
-If SMTP is not configured, check the backend terminal output. The OTP will be logged there for development.
+- `/api/health`
+- `/api/auth`
+- `/api/services`
+- `/api/applications`
+- `/api/contact`
+- `/api/emergency`
+- `/api/admin`
 
-## Git Notes
+## Database And Supabase
 
-This project is git-ready. Generated folders like `node_modules`, `dist`, and `.vite` should remain ignored.
+This repository now includes Supabase/PostgreSQL SQL files instead of relying on the old MySQL setup.
+
+Use the SQL files inside `database/`:
+
+- `supabase_schema.sql`
+- `supabase_data.sql`
+- `supabase_emergency.sql`
+
+Run them in the Supabase SQL Editor in this order:
+
+1. `supabase_schema.sql`
+2. `supabase_data.sql`
+3. `supabase_emergency.sql`
+
+Main database entities include:
+
+- `users`
+- `services`
+- `applications`
+- `contacts`
+- `email_verification_otps`
+- emergency services data
+
+## Repository State
+
+This repository currently contains both migration-target and legacy code:
+
+- `nextjs-app/` contains the Next.js migration report
+- `database/` contains Supabase PostgreSQL schema and data files
+- root `package.json` already includes Supabase packages
+- `backend/config/db.js` expects `DATABASE_URL` for PostgreSQL
+- `frontend/` and `backend/` are still present from the older app structure
+
+Because of this, the repository should be presented as a Next.js migration project backed by Supabase PostgreSQL, not as an XAMPP/MySQL project.
+
+## Environment
+
+The database connection is expected through:
+
+```env
+DATABASE_URL=your_supabase_postgres_connection_string
+```
+
+The current backend database adapter is already configured for Supabase PostgreSQL.
+
+## Migration Direction
+
+The planned direction of the project is:
+
+- move the app toward Next.js App Router
+- keep Supabase PostgreSQL as the database layer
+- replace old hardcoded backend URLs with app-native API access
+- migrate browser-only logic carefully into client components
+- remove outdated XAMPP/MySQL-only documentation and assumptions
+
+## Migration Reference
+
+See `nextjs-app/MIGRATION_REPORT.md` for the route mapping, architecture analysis, and migration notes.
