@@ -24,6 +24,7 @@ import {
   readEmergencyServices,
   writeEmergencyFavorites,
 } from '../utils/emergencyStorage.js';
+import { fixMojibake } from '../utils/fixMojibake.js';
 
 const copy = {
   en: {
@@ -45,7 +46,7 @@ const copy = {
     district: 'District',
     status: 'Active',
   },
-  bn: {
+  bn: fixMojibake({
     eyebrow: 'জরুরি নির্দেশিকা',
     title: 'জরুরি সেবা',
     intro: 'বিশ্বস্ত জরুরি নম্বর খুঁজুন, সরাসরি কল করুন এবং প্রয়োজনীয় নম্বর সংরক্ষণ করুন।',
@@ -279,4 +280,5 @@ export default function Emergency() {
     </section>
   );
 }
+
 
