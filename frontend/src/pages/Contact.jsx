@@ -33,7 +33,7 @@ export default function Contact() {
     setError('');
 
     try {
-      const response = await fetch(`${API_BASE_URL}/contact`, {
+      const response = await fetch(createApiUrl('/contact'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,3 +133,4 @@ export default function Contact() {
     </>
   );
 }
+
