@@ -64,7 +64,7 @@ const copy = {
     address: 'ঠিকানা',
     district: 'জেলা',
     status: 'সক্রিয়',
-  },
+  }),
 };
 
 const iconMap = {
@@ -280,6 +280,7 @@ export default function Emergency() {
     </section>
   );
 }
+
 
 
 
