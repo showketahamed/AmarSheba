@@ -55,7 +55,7 @@ function clearSession() {
 }
 
 async function request(path, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const response = await fetch(createApiUrl(path), {
     headers: {
       'Content-Type': 'application/json',
       ...(options.headers || {}),
@@ -230,3 +230,4 @@ export function useAuth() {
 
   return context;
 }
+
