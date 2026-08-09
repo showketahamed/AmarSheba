@@ -9,6 +9,7 @@ import { ADMIN_STORAGE_KEYS, readJson } from '../utils/adminStorage.js';
 import { filterServices } from '../utils/search.js';
 import { usePageTitle } from '../hooks/usePageTitle.js';
 import { useScrollReveal } from '../hooks/useScrollReveal.js';
+import { fixMojibake } from '../utils/fixMojibake.js';
 
 const noticeStyles = {
   info: 'border-blue-100 bg-blue-50 text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-100',
@@ -42,11 +43,11 @@ export default function Home() {
   );
   const activeNotices = notices.filter((notice) => !dismissedNotices.includes(notice.id));
   const emergencyHelp = [
-    { label: locale === 'bn' ? 'অ্যাম্বুলেন্স' : 'Ambulance', icon: Ambulance, query: 'ambulance' },
-    { label: locale === 'bn' ? 'ফায়ার' : 'Fire', icon: Flame, query: 'fire' },
-    { label: locale === 'bn' ? 'পুলিশ' : 'Police', icon: Shield, query: 'police' },
-    { label: locale === 'bn' ? 'রক্ত' : 'Blood', icon: HeartPulse, query: 'blood' },
-    { label: locale === 'bn' ? 'হাসপাতাল' : 'Hospital', icon: Building2, query: 'hospital' },
+    { label: locale === 'bn' ? fixMojibake('অ্যাম্বুলেন্স') : 'Ambulance', icon: Ambulance, query: 'ambulance' },
+    { label: locale === 'bn' ? fixMojibake('ফায়ার') : 'Fire', icon: Flame, query: 'fire' },
+    { label: locale === 'bn' ? fixMojibake('পুলিশ') : 'Police', icon: Shield, query: 'police' },
+    { label: locale === 'bn' ? fixMojibake('রক্ত') : 'Blood', icon: HeartPulse, query: 'blood' },
+    { label: locale === 'bn' ? fixMojibake('হাসপাতাল') : 'Hospital', icon: Building2, query: 'hospital' },
   ];
 
   const dismissNotice = (noticeId) => {
@@ -130,11 +131,11 @@ export default function Home() {
         <div className="container-shell py-8">
           <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm font-bold uppercase text-red-600 dark:text-red-200">{locale === 'bn' ? 'জরুরি সহায়তা' : 'Emergency Help'}</p>
-              <h2 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">{locale === 'bn' ? 'দ্রুত জরুরি নম্বর খুলুন' : 'Open quick emergency contacts'}</h2>
+              <p className="text-sm font-bold uppercase text-red-600 dark:text-red-200">{locale === 'bn' ? fixMojibake('জরুরি সহায়তা') : 'Emergency Help'}</p>
+              <h2 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">{locale === 'bn' ? fixMojibake('দ্রুত জরুরি নম্বর খুলুন') : 'Open quick emergency contacts'}</h2>
             </div>
             <Link to="/services/emergency" className="btn-pop focus-ring inline-flex h-10 items-center gap-2 rounded-md border border-red-200 bg-white px-3 text-sm font-bold text-red-600 dark:border-red-500/30 dark:bg-slate-950 dark:text-red-100">
-              {locale === 'bn' ? 'সব দেখুন' : 'View all'}
+              {locale === 'bn' ? fixMojibake('সব দেখুন') : 'View all'}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -178,3 +179,4 @@ export default function Home() {
     </>
   );
 }
+
