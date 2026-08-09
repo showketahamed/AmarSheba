@@ -44,7 +44,7 @@ function getToken() {
 
 async function apiRequest(path, options = {}) {
   const token = getToken();
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const response = await fetch(createApiUrl(path), {
     headers: {
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -582,3 +582,4 @@ export default function AdminDashboard() {
     </section>
   );
 }
+
