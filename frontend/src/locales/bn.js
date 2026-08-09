@@ -492,9 +492,10 @@ const bn = fixMojibake({
     rights: 'সর্বস্বত্ব সংরক্ষিত।',
     note: 'প্রবেশযোগ্য জনসেবা খোঁজার জন্য নির্মিত।',
   },
-};
+});
 
 export default bn;
+
 
 
 
