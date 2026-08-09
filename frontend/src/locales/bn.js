@@ -1,3 +1,5 @@
+import { fixMojibake } from '../utils/fixMojibake.js';
+
 const createService = ({
   title,
   description,
@@ -43,7 +45,7 @@ const createService = ({
   ],
 });
 
-const bn = {
+const bn = fixMojibake({
   nav: {
     home: 'হোম',
     services: 'সেবা',
@@ -493,4 +495,5 @@ const bn = {
 };
 
 export default bn;
+
 
