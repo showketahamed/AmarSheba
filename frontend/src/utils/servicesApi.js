@@ -109,10 +109,10 @@ function buildFallbackContent(service, locale, translations) {
     title: isBangla ? service.title_bn : service.title_en,
     description: isBangla ? service.description_bn : service.description_en,
     overview: isBangla ? service.description_bn : service.description_en,
-    eligibility: isBangla ? 'যোগ্যতা জানতে অফিসিয়াল নির্দেশনা দেখুন।' : 'Please review the official instructions for eligibility.',
+    eligibility: isBangla ? fixMojibake('যোগ্যতা জানতে অফিসিয়াল নির্দেশনা দেখুন।') : 'Please review the official instructions for eligibility.',
     requiredDocuments: service.required_documents_list,
-    fees: service.fee || (isBangla ? 'অফিসিয়াল সূচি অনুযায়ী' : 'As per official schedule'),
-    timeline: service.processing_time || (isBangla ? 'অফিসিয়াল সময়সূচি অনুযায়ী' : 'As per official processing timeline'),
+    fees: service.fee || (isBangla ? fixMojibake('অফিসিয়াল সূচি অনুযায়ী') : 'As per official schedule'),
+    timeline: service.processing_time || (isBangla ? fixMojibake('অফিসিয়াল সময়সূচি অনুযায়ী') : 'As per official processing timeline'),
     steps: isBangla
       ? [
           'অফিসিয়াল নির্দেশনা দেখে সেবার ধরন নিশ্চিত করুন।',
@@ -143,7 +143,7 @@ function buildFallbackContent(service, locale, translations) {
 }
 
 async function request(path) {
-  const response = await fetch(`${API_BASE_URL}${path}`);
+  const response = await fetch(createApiUrl(path));
   const payload = await response.json().catch(() => null);
 
   if (!response.ok) {
@@ -183,3 +183,4 @@ export async function fetchServiceById(serviceId) {
 export function getDisplayContent(service, locale, translations) {
   return buildFallbackContent(service, locale, translations);
 }
+
