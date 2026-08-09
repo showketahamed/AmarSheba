@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChevronDown,
   LayoutDashboard,
   LogIn,
@@ -14,6 +14,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { useLocale } from '../context/LocaleContext.jsx';
 import LanguageToggle from './LanguageToggle.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
+import { fixMojibake } from '../utils/fixMojibake.js';
 
 const links = [
   { to: '/', label: 'nav.home' },
@@ -38,17 +39,17 @@ function getAuthLabels(locale, t) {
   const isBangla = locale === 'bn';
 
   return {
-    dashboard: isBangla ? 'à¦¡à§à¦¯à¦¾à¦¶à¦¬à§‹à¦°à§à¦¡' : 'Dashboard',
-    adminDashboard: isBangla ? 'à¦…à§à¦¯à¦¾à¦¡à¦®à¦¿à¦¨ à¦¡à§à¦¯à¦¾à¦¶à¦¬à§‹à¦°à§à¦¡' : 'Admin Dashboard',
-    profile: isBangla ? 'à¦ªà§à¦°à§‹à¦«à¦¾à¦‡à¦² / à¦¸à§‡à¦Ÿà¦¿à¦‚à¦¸' : 'Profile / Settings',
-    adminSettings: isBangla ? 'à¦…à§à¦¯à¦¾à¦¡à¦®à¦¿à¦¨ à¦¸à§‡à¦Ÿà¦¿à¦‚à¦¸' : 'Admin Settings',
+    dashboard: isBangla ? fixMojibake('ড্যাশবোর্ড') : 'Dashboard',
+    adminDashboard: isBangla ? fixMojibake('অ্যাডমিন ড্যাশবোর্ড') : 'Admin Dashboard',
+    profile: isBangla ? fixMojibake('প্রোফাইল / সেটিংস') : 'Profile / Settings',
+    adminSettings: isBangla ? fixMojibake('অ্যাডমিন সেটিংস') : 'Admin Settings',
     admin: t('nav.admin'),
     logout: t('auth.logout'),
     login: t('auth.loginLink'),
-    roleAdmin: isBangla ? 'à¦…à§à¦¯à¦¾à¦¡à¦®à¦¿à¦¨' : 'Admin',
-    roleUser: isBangla ? 'à¦¨à¦¾à¦—à¦°à¦¿à¦•' : 'Citizen',
-    account: isBangla ? 'à¦…à§à¦¯à¦¾à¦•à¦¾à¦‰à¦¨à§à¦Ÿ' : 'Account',
-    quickActions: isBangla ? 'à¦¦à§à¦°à§à¦¤ à¦•à¦¾à¦œ' : 'Quick actions',
+    roleAdmin: isBangla ? fixMojibake('অ্যাডমিন') : 'Admin',
+    roleUser: isBangla ? fixMojibake('নাগরিক') : 'Citizen',
+    account: isBangla ? fixMojibake('অ্যাকাউন্ট') : 'Account',
+    quickActions: isBangla ? fixMojibake('দ্রুত কাজ') : 'Quick actions',
   };
 }
 
@@ -338,4 +339,5 @@ export default function Navbar() {
     </header>
   );
 }
+
 
