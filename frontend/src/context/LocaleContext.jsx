@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import bn from '../locales/bn.js';
 import en from '../locales/en.js';
 import { buildServiceTranslations, SERVICE_CATEGORY_COUNT } from '../data/serviceCatalog.js';
+import { fixMojibake } from '../utils/fixMojibake.js';
 
 const dictionaries = { en, bn };
 const LocaleContext = createContext(null);
@@ -26,7 +27,7 @@ export function LocaleProvider({ children }) {
         ...dictionaries[locale].common,
         searchPlaceholder:
           locale === 'bn'
-            ? 'এনআইডি, পাসপোর্ট, কৃষি, কর, ইউটিলিটি, জরুরি সেবা খুঁজুন...'
+            ? fixMojibake('এনআইডি, পাসপোর্ট, কৃষি, কর, ইউটিলিটি, জরুরি সেবা খুঁজুন...')
             : 'Search NID, passport, agriculture, tax, utility, emergency...',
       },
       home: {
@@ -35,7 +36,7 @@ export function LocaleProvider({ children }) {
       },
       serviceDetails: {
         ...dictionaries[locale].serviceDetails,
-        steps: locale === 'bn' ? 'আবেদন প্রক্রিয়া' : 'Application Process',
+        steps: locale === 'bn' ? fixMojibake('আবেদন প্রক্রিয়া') : 'Application Process',
       },
       services: buildServiceTranslations(locale),
     };
@@ -63,3 +64,4 @@ export function useLocale() {
 
   return context;
 }
+
